@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSAL - Pure Essential Oils for Natural Wellness</title>
+    <meta name="description" content="Discover premium essential oils for natural healing and wellness. Shop pure, organic aromatherapy blends crafted for your wellbeing journey.">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: '#9CAF88',
+                        cream: '#F7F5F3',
+                        terracotta: '#D4A574',
+                        forest: '#2C3E2D'
+                    },
+                    fontFamily: {
+                        'display': ['Georgia', 'serif'],
+                        'body': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #9CAF88 0%, #F7F5F3 100%);
+            background-attachment: fixed;
+        }
+        
+        .hero-bg {
+            background: url('resources/hero-wellness.jpg') center/cover no-repeat;
+            position: relative;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(156, 175, 136, 0.1);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(247, 245, 243, 0.9);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #9CAF88, #D4A574);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(156, 175, 136, 0.3);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            background: rgba(247, 245, 243, 0.95);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(44, 62, 45, 0.15);
+        }
+        
+        .quiz-container {
+            background: rgba(247, 245, 243, 0.95);
+            backdrop-filter: blur(15px);
+        }
+        
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #D4A574;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .testimonial-card {
+            background: rgba(247, 245, 243, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+<base href="https://6flw52nzojeuy.ok.kimi.link">
+</head>
+<body class="text-forest">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="resources/logo.png" alt="ASSAL Logo" class="h-10 w-auto">
+                    <span class="text-2xl font-display font-bold text-forest">ASSAL</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-forest hover:text-sage font-medium">Home</a>
+                    <a href="products.html" class="nav-link text-forest hover:text-sage font-medium">Products</a>
+                    <a href="about.html" class="nav-link text-forest hover:text-sage font-medium">About</a>
+                    <a href="contact.html" class="nav-link text-forest hover:text-sage font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-forest hover:text-sage transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <button class="p-2 text-forest hover:text-sage transition-colors relative">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0V19a2 2 0 002 2h7a2 2 0 002-2v-4"></path>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-terracotta text-white text-xs rounded-full h-4 w-4 flex items-center justify-center" id="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-16">
+        <div id="particles-container" class="floating-particles"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl lg:text-7xl font-display font-bold mb-6 leading-tight">
+                        <span class="block text-forest" data-splitting>Pure Essential</span>
+                        <span class="block text-sage" data-splitting>Oils for</span>
+                        <span class="block text-terracotta" data-splitting>Natural Wellness</span>
+                    </h1>
+                    
+                    <p class="text-xl text-forest/80 mb-8 max-w-2xl leading-relaxed">
+                        Discover the healing power of nature with our premium essential oils. 
+                        Crafted for your wellbeing journey, each drop brings tranquility, 
+                        energy, and balance to your daily life.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg" onclick="startQuiz()">
+                            Find Your Perfect Blend
+                        </button>
+                        <a href="products.html" class="border-2 border-sage text-sage hover:bg-sage hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+                            Shop Collection
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="quiz-container rounded-3xl p-8 shadow-2xl" id="quiz-container" style="display: none;">
+                        <div id="quiz-content">
+                            <h3 class="text-2xl font-display font-bold mb-6 text-center">Find Your Perfect Essential Oil</h3>
+                            <div id="quiz-questions"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl" id="hero-stats">
+                        <h3 class="text-xl font-display font-bold mb-6 text-center">Wellness Benefits</h3>
+                        <div id="benefits-chart" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-20 bg-cream/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">Featured Essential Oils</h2>
+                <p class="text-xl text-forest/70 max-w-3xl mx-auto">
+                    Handcrafted blends designed to enhance your wellbeing and bring natural healing into your daily routine.
+                </p>
+            </div>
+            
+            <div class="splide" id="products-carousel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="product-card rounded-2xl p-6 mx-4">
+                                <img src="https://kimi-web-img.moonshot.cn/img/tattwamasi.in/3e6a304f8fab74e42d09507bec33aecb5900c5e2.png" alt="Eucalyptus Essential Oil" class="w-full h-48 object-cover rounded-xl mb-4">
+                                <h3 class="text-xl font-display font-bold mb-2">Eucalyptus Pure Oil</h3>
+                                <p class="text-forest/70 mb-4">Refreshing and clarifying, perfect for respiratory wellness and mental clarity.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-sage">£19.99</span>
+                                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold" onclick="addToCart('eucalyptus')">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="product-card rounded-2xl p-6 mx-4">
+                                <img src="https://kimi-web-img.moonshot.cn/img/realfoodrn.com/c505aabc52174255917a5994ae2b586d2a5bbb82.jpg" alt="Jasmine Essential Oil" class="w-full h-48 object-cover rounded-xl mb-4">
+                                <h3 class="text-xl font-display font-bold mb-2">Jasmine Absolute</h3>
+                                <p class="text-forest/70 mb-4">Luxurious floral scent that promotes relaxation and emotional balance.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-sage">£27.99</span>
+                                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold" onclick="addToCart('jasmine')">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="product-card rounded-2xl p-6 mx-4">
+                                <img src="https://kimi-web-img.moonshot.cn/img/media.instamojo.com/e671fb8830cf8a9d5ea13d4a5344ccf272754808.jpg" alt="Tea Tree Oil" class="w-full h-48 object-cover rounded-xl mb-4">
+                                <h3 class="text-xl font-display font-bold mb-2">Tea Tree Essential Oil</h3>
+                                <p class="text-forest/70 mb-4">Powerful natural antiseptic for skin health and immune support.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-sage">£15.99</span>
+                                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold" onclick="addToCart('tea-tree')">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="product-card rounded-2xl p-6 mx-4">
+                                <img src="https://kimi-web-img.moonshot.cn/img/purelyessential.com.au/a5465bbea3aa1922af53471ee3b4db7353d1ee8b.jpg" alt="Sandalwood Oil" class="w-full h-48 object-cover rounded-xl mb-4">
+                                <h3 class="text-xl font-display font-bold mb-2">Sandalwood Pure Oil</h3>
+                                <p class="text-forest/70 mb-4">Grounding woody aroma for meditation and spiritual practices.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-sage">£34.99</span>
+                                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold" onclick="addToCart('sandalwood')">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wellness Benefits -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl lg:text-5xl font-display font-bold mb-8">Natural Healing Powers</h2>
+                    <p class="text-xl text-forest/70 mb-8 leading-relaxed">
+                        Essential oils have been used for centuries to promote physical, emotional, and spiritual wellbeing. 
+                        Our carefully sourced oils contain the concentrated essence of plants, offering therapeutic benefits 
+                        that can transform your daily wellness routine.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-display font-bold mb-2">Stress Relief</h3>
+                                <p class="text-forest/70">Lavender, chamomile, and bergamot oils help reduce anxiety and promote relaxation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-display font-bold mb-2">Better Sleep</h3>
+                                <p class="text-forest/70">Cedarwood, vetiver, and ylang-ylang support deeper, more restful sleep patterns.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-display font-bold mb-2">Energy Boost</h3>
+                                <p class="text-forest/70">Peppermint, rosemary, and citrus oils provide natural energy without caffeine crashes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl fade-in">
+                    <h3 class="text-2xl font-display font-bold mb-6 text-center">Popular Essential Oil Uses</h3>
+                    <div id="usage-chart" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-cream/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">What Our Community Says</h2>
+                <p class="text-xl text-forest/70 max-w-3xl mx-auto">
+                    Join thousands who have transformed their wellness journey with our essential oils.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-2xl p-8 fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-terracotta">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-forest/70 mb-4 italic">
+                        "The lavender oil has completely transformed my sleep quality. I fall asleep faster and wake up feeling truly rested."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-sage font-bold">SM</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Sarah Mitchell</p>
+                            <p class="text-sm text-forest/60">Yoga Instructor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-terracotta">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-forest/70 mb-4 italic">
+                        "I use the peppermint oil during my meditation sessions. It helps me stay focused and centered throughout the day."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-sage font-bold">MJ</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Marcus Johnson</p>
+                            <p class="text-sm text-forest/60">Meditation Teacher</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-terracotta">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-forest/70 mb-4 italic">
+                        "The tea tree oil cleared up my skin issues within weeks. I'm amazed by the quality and purity of these oils."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-sage font-bold">ER</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Emma Rodriguez</p>
+                            <p class="text-sm text-forest/60">Wellness Coach</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl p-12 shadow-2xl fade-in">
+                <h2 class="text-4xl font-display font-bold mb-6">Join Our Wellness Community</h2>
+                <p class="text-xl text-forest/70 mb-8">
+                    Get exclusive access to wellness tips, new product launches, and special offers.
+                </p>
+                
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 rounded-full border border-sage/30 focus:outline-none focus:ring-2 focus:ring-sage/50" required>
+                    <button type="submit" class="btn-primary text-white px-8 py-4 rounded-full font-semibold">
+                        Subscribe
+                    </button>
+                </form>
+                
+                <p class="text-sm text-forest/60 mt-4">
+                    No spam, unsubscribe anytime. We respect your privacy.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-forest text-cream py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="resources/logo.png" alt="ASSAL Logo" class="h-10 w-auto filter brightness-0 invert">
+                        <span class="text-2xl font-display font-bold">ASSAL</span>
+                    </div>
+                    <p class="text-cream/80 mb-6 max-w-md">
+                        Pure essential oils for natural wellness. Crafted with care, sourced with integrity, 
+                        designed for your wellbeing journey.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-cream/60 hover:text-cream transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-cream/60 hover:text-cream transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-cream/60 hover:text-cream transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-cream/60 hover:text-cream transition-colors">Products</a></li>
+                        <li><a href="about.html" class="text-cream/60 hover:text-cream transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-cream/60 hover:text-cream transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-cream/60 hover:text-cream transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-bold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-cream/60 hover:text-cream transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="text-cream/60 hover:text-cream transition-colors">Returns</a></li>
+                        <li><a href="#" class="text-cream/60 hover:text-cream transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-cream/60 hover:text-cream transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-cream/20 mt-12 pt-8 text-center text-cream/60">
+                <p>&copy; 2024 ASSAL Essential Oils. All rights reserved. Crafted with love for your wellness journey.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
