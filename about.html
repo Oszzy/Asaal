@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Asaal - Our Story & Mission | Pure Essential Oils UK</title>
+    <meta name="description" content="Learn about Asaal's mission to provide pure, organic essential oils. Discover our story, values, and commitment to quality, sustainability, and wellness.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Asaal - Our Story & Mission | Pure Essential Oils UK">
+    <meta property="og:description" content="Discover Asaal's commitment to pure, organic essential oils and natural wellness.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://asaal.co.uk/about.html">
+    <meta property="og:image" content="resources/hero-wellness.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Asaal - Our Story & Mission | Pure Essential Oils UK">
+    <meta name="twitter:description" content="Discover Asaal's commitment to pure, organic essential oils and natural wellness.">
+    <meta name="twitter:image" content="resources/hero-wellness.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="resources/logo-asaal.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.0/echarts.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --sage-green: #00A86B;
+            --sage-green-light: #E8F5E8;
+            --charcoal: #2D2D2D;
+            --warm-cream: #FAFAFA;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .btn-primary {
+            background-color: var(--sage-green);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #008A5A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 168, 107, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid var(--sage-green);
+            color: var(--sage-green);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--sage-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0.9;
+            transform: translateY(20px);
+        }
+        
+        .hero-about {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--sage-green-light) 100%);
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--sage-green);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.25rem;
+            width: 2px;
+            height: calc(100% - 0.75rem);
+            background: var(--sage-green-light);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--sage-green);
+            line-height: 1;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <img src="resources/logo-asaal.png" alt="Asaal" class="h-8 w-auto">
+                        <span class="font-display text-2xl font-bold text-gray-900">Asaal</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600 font-medium transition-colors">Home</a>
+                    <a href="shop.html" class="text-gray-700 hover:text-green-600 font-medium transition-colors">Shop</a>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-green-600 font-medium transition-colors flex items-center">
+                            Categories
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="shop.html?category=single-oils" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 rounded-t-lg">Single Oils</a>
+                            <a href="shop.html?category=blends" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600">Blends</a>
+                            <a href="shop.html?category=starter-kits" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600">Starter Kits</a>
+                            <a href="shop.html?category=diffusers" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 rounded-b-lg">Diffusers</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-900 hover:text-green-600 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-green-600 font-medium transition-colors">Contact</a>
+                </div>
+                
+                <!-- Right Side Icons -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search -->
+                    <button class="text-gray-700 hover:text-green-600 transition-colors">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Wishlist -->
+                    <button class="wishlist-toggle text-gray-700 hover:text-green-600 transition-colors relative">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <span class="wishlist-count absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center hidden">0</span>
+                    </button>
+                    
+                    <!-- Cart -->
+                    <button class="cart-toggle text-gray-700 hover:text-green-600 transition-colors relative">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0h9"></path>
+                        </svg>
+                        <span class="cart-count absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center hidden">0</span>
+                    </button>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button class="nav-toggle md:hidden text-gray-700 hover:text-green-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-2 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Home</a>
+                <a href="shop.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Shop</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-900 font-medium">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-about pt-24 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="font-display text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Our Story
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Founded in 2020 with a simple mission: to make pure, organic essential oils accessible to everyone. 
+                    We believe in the power of nature to enhance wellbeing and transform daily routines into moments of mindfulness.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-20 bg-white animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-element">
+                    <h2 class="font-display text-4xl font-bold text-gray-900 mb-6">
+                        Our Mission
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        At Asaal, we're passionate about connecting people with the healing power of plants. Our mission is to provide the highest quality essential oils while promoting sustainable practices and ethical sourcing.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        We believe that wellness should be accessible to all, which is why we're committed to offering premium products at fair prices, backed by education and exceptional customer service.
+                    </p>
+                    <a href="shop.html" class="btn-primary px-8 py-3 rounded-full font-semibold inline-block">
+                        Explore Our Products
+                    </a>
+                </div>
+                <div class="animate-element">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.schoolofnaturalskincare.com/e836ff81f1da734126b631d527663fa9d4d1f94c.webp" 
+                         alt="Essential Oil Production" 
+                         class="w-full h-96 object-cover rounded-2xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-20 bg-gray-50 animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    Our Values
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    The principles that guide everything we do
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="value-card animate-element">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Purity First</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We never compromise on quality. Every batch of essential oil is rigorously tested to ensure it meets our high standards for purity and potency.
+                    </p>
+                </div>
+                
+                <div class="value-card animate-element">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Sustainability</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We're committed to protecting our planet through sustainable sourcing, eco-friendly packaging, and supporting farming communities worldwide.
+                    </p>
+                </div>
+                
+                <div class="value-card animate-element">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Community</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We believe in building a community around wellness, sharing knowledge, and supporting each other on our journey to better health.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Timeline -->
+    <section class="py-20 bg-white animate-on-scroll">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    Our Journey
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    From a small idea to a trusted wellness brand
+                </p>
+            </div>
+            
+            <div class="space-y-12">
+                <div class="timeline-item animate-element">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-900">The Beginning</h3>
+                            <span class="text-green-600 font-medium">2020</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Asaal was founded with a vision to make premium essential oils accessible to everyone. We started with just three single oils sourced from trusted organic farms.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-element">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-900">First Milestone</h3>
+                            <span class="text-green-600 font-medium">2021</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Expanded our product line to include expertly crafted blends and starter kits. Reached 1,000 happy customers and established our quality testing laboratory.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-element">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-900">Sustainability Focus</h3>
+                            <span class="text-green-600 font-medium">2022</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Launched our sustainability initiative, introducing eco-friendly packaging and carbon-neutral shipping. Partnered with fair trade farming cooperatives.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-element">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-900">Community Growth</h3>
+                            <span class="text-green-600 font-medium">2023</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Built a thriving community of wellness enthusiasts. Launched educational resources and workshops to help customers get the most from their essential oils.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-element">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-900">Looking Forward</h3>
+                            <span class="text-green-600 font-medium">2024+</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Continuing to innovate and expand our product range while maintaining our commitment to quality, sustainability, and customer education.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="py-20 bg-gray-50 animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    Our Impact
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    Numbers that reflect our commitment to quality and community
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center animate-element">
+                    <div class="stat-number mb-2" data-count="50000">0</div>
+                    <p class="text-gray-600 font-medium">Happy Customers</p>
+                </div>
+                <div class="text-center animate-element">
+                    <div class="stat-number mb-2" data-count="25">0</div>
+                    <p class="text-gray-600 font-medium">Essential Oil Varieties</p>
+                </div>
+                <div class="text-center animate-element">
+                    <div class="stat-number mb-2" data-count="15">0</div>
+                    <p class="text-gray-600 font-medium">Farming Partners</p>
+                </div>
+                <div class="text-center animate-element">
+                    <div class="stat-number mb-2" data-count="99">0</div>
+                    <p class="text-gray-600 font-medium">% Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Assurance -->
+    <section class="py-20 bg-white animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-element">
+                    <img src="https://kimi-web-img.moonshot.cn/img/thecandleroom.ph/e70ee408ad5e13b090de6e18eed70b3722a8e7a7.jpg" 
+                         alt="Quality Testing" 
+                         class="w-full h-96 object-cover rounded-2xl shadow-lg">
+                </div>
+                <div class="animate-element">
+                    <h2 class="font-display text-4xl font-bold text-gray-900 mb-6">
+                        Quality You Can Trust
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Every batch of Asaal essential oil undergoes rigorous testing to ensure purity, potency, and safety. Our GC-MS testing process analyzes the chemical composition of each oil, verifying its authenticity and therapeutic properties.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">GC-MS Testing</h4>
+                                <p class="text-gray-600">Gas chromatography-mass spectrometry analysis for every batch</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Organic Certification</h4>
+                                <p class="text-gray-600">Certified organic by the Soil Association</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Cruelty-Free</h4>
+                                <p class="text-gray-600">Never tested on animals, certified cruelty-free</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">EU Compliant</h4>
+                                <p class="text-gray-600">Meets all European cosmetic regulations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="shop.html" class="btn-primary px-8 py-3 rounded-full font-semibold inline-block">
+                        Shop with Confidence
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 bg-gray-50 animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    Meet Our Team
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    Passionate individuals dedicated to bringing you the finest essential oils
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg animate-element">
+                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-green-600">AS</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Amara Singh</h3>
+                    <p class="text-green-600 font-medium mb-3">Founder & CEO</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A certified aromatherapist with over 10 years of experience in natural wellness. Amara founded Asaal to share the transformative power of essential oils with the world.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg animate-element">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">JM</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">James Mitchell</h3>
+                    <p class="text-green-600 font-medium mb-3">Head of Quality</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A analytical chemist specializing in essential oil analysis. James ensures every batch meets our strict quality standards through comprehensive GC-MS testing.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg animate-element">
+                    <div class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-purple-600">EC</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Elena Chen</h3>
+                    <p class="text-green-600 font-medium mb-3">Sustainability Director</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Environmental scientist and sustainability expert. Elena leads our efforts in ethical sourcing, eco-friendly packaging, and carbon-neutral operations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-white animate-on-scroll">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                Join Our Wellness Community
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 animate-element">
+                Ready to experience the benefits of pure essential oils? Start your wellness journey with Asaal today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-element">
+                <a href="shop.html" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg">
+                    Shop Now
+                </a>
+                <a href="contact.html" class="btn-secondary px-8 py-4 rounded-full font-semibold text-lg">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="resources/logo-asaal.png" alt="Asaal" class="h-8 w-auto">
+                        <span class="font-display text-2xl font-bold text-gray-900">Asaal</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Pure essential oils and wellness products for natural living.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Shop All</a></li>
+                        <li><a href="about.html" class="text-gray-600 hover:text-green-600 text-sm transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Care -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Customer Care</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Returns</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Connect -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Connect</h3>
+                    <p class="text-gray-600 text-sm mb-4">Follow us for wellness tips and updates</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center">
+                <p class="text-gray-600 text-sm">
+                    © 2024 Asaal. All rights reserved. | Company Registration: 12345678 | VAT: GB123456789
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 hidden">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-900">Shopping Cart</h3>
+                <button class="cart-toggle text-gray-500 hover:text-gray-700">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="cart-items flex-1 overflow-y-auto p-6">
+            <!-- Cart items will be populated by JavaScript -->
+        </div>
+        
+        <div class="border-t border-gray-200 p-6">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-lg font-semibold">Total:</span>
+                <span class="cart-total text-xl font-bold text-green-600">£0.00</span>
+            </div>
+            <a href="#" class="btn-primary w-full py-3 rounded-full font-semibold text-center block">
+                Checkout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+    
+    <!-- About-specific JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate statistics counters
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const animateCounter = (element) => {
+                const target = parseInt(element.dataset.count);
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            };
+            
+            // Intersection Observer for statistics
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target;
+                        animateCounter(statNumber);
+                        statsObserver.unobserve(statNumber);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statNumbers.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+        });
+    </script>
+</body>
+</html>

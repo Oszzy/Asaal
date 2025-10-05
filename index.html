@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asaal - Pure Essential Oils & Wellness Products | Natural Aromatherapy</title>
+    <meta name="description" content="Discover premium essential oils and wellness products from Asaal. Pure, organic, and ethically sourced aromatherapy essentials for your wellbeing journey.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Asaal - Pure Essential Oils & Wellness Products">
+    <meta property="og:description" content="Premium essential oils and wellness products for natural aromatherapy and wellbeing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://asaal.co.uk/">
+    <meta property="og:image" content="resources/hero-wellness.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Asaal - Pure Essential Oils & Wellness Products">
+    <meta name="twitter:description" content="Premium essential oils and wellness products for natural aromatherapy and wellbeing.">
+    <meta name="twitter:image" content="resources/hero-wellness.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="resources/logo-asaal.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.0/echarts.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --sage-green: #00A86B;
+            --sage-green-light: #E8F5E8;
+            --charcoal: #2D2D2D;
+            --warm-cream: #FAFAFA;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--sage-green-light) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background-color: var(--sage-green);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #008A5A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 168, 107, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid var(--sage-green);
+            color: var(--sage-green);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--sage-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0.9;
+            transform: translateY(20px);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--sage-green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage-green);
+            font-size: 24px;
+            margin: 0 auto 1rem;
+        }
+        
+        .cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .newsletter-modal {
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .splide__arrow {
+            background: var(--sage-green);
+            opacity: 0.8;
+        }
+        
+        .splide__arrow:hover {
+            opacity: 1;
+        }
+        
+        .splide__pagination__page.is-active {
+            background: var(--sage-green);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <img src="resources/logo-asaal.png" alt="Asaal" class="h-8 w-auto">
+                        <span class="font-display text-2xl font-bold text-gray-900">Asaal</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-900 hover:text-green-600 font-medium transition-colors">Home</a>
+                    <a href="shop.html" class="text-gray-700 hover:text-green-600 font-medium transition-colors">Shop</a>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-green-600 font-medium transition-colors flex items-center">
+                            Categories
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="shop.html?category=single-oils" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 rounded-t-lg">Single Oils</a>
+                            <a href="shop.html?category=blends" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600">Blends</a>
+                            <a href="shop.html?category=starter-kits" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600">Starter Kits</a>
+                            <a href="shop.html?category=diffusers" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 rounded-b-lg">Diffusers</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-700 hover:text-green-600 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-green-600 font-medium transition-colors">Contact</a>
+                </div>
+                
+                <!-- Right Side Icons -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search -->
+                    <button class="text-gray-700 hover:text-green-600 transition-colors">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Wishlist -->
+                    <button class="wishlist-toggle text-gray-700 hover:text-green-600 transition-colors relative">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <span class="wishlist-count absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center hidden">0</span>
+                    </button>
+                    
+                    <!-- Cart -->
+                    <button class="cart-toggle text-gray-700 hover:text-green-600 transition-colors relative">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0h9"></path>
+                        </svg>
+                        <span class="cart-count absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center hidden">0</span>
+                    </button>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button class="nav-toggle md:hidden text-gray-700 hover:text-green-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-2 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-900 font-medium">Home</a>
+                <a href="shop.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Shop</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-green-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center relative">
+        <div id="particle-canvas"></div>
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="hero-headline font-display text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                    Pure Wellness, Naturally
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Discover the power of pure essential oils and natural wellness products. 
+                    Ethically sourced, expertly crafted, designed for your wellbeing journey.
+                </p>
+                <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="shop.html" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg btn-hover">
+                        Shop Now
+                    </a>
+                    <a href="about.html" class="btn-secondary px-8 py-4 rounded-full font-semibold text-lg btn-hover">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="py-20 bg-gray-50 animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    Featured Collections
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    Curated selections of our finest essential oils and wellness products
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Best Sellers -->
+                <div class="product-card animate-element">
+                    <div class="relative overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thecandleroom.ph/e70ee408ad5e13b090de6e18eed70b3722a8e7a7.jpg" 
+                             alt="Best Sellers Collection" 
+                             class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold">Best Sellers</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Our most popular essential oils loved by customers worldwide</p>
+                        <a href="shop.html?collection=best-sellers" class="btn-primary px-6 py-2 rounded-full font-medium inline-block">
+                            Shop Collection
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- New Arrivals -->
+                <div class="product-card animate-element">
+                    <div class="relative overflow-hidden">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.evolvebeauty.com/d7cb800873e21c26dae1cc016db1c2028eb51306.jpg" 
+                             alt="New Arrivals Collection" 
+                             class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold">New Arrivals</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Latest additions to our premium wellness collection</p>
+                        <a href="shop.html?collection=new-arrivals" class="btn-primary px-6 py-2 rounded-full font-medium inline-block">
+                            Explore New
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Strip -->
+    <section class="py-16 bg-white animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="animate-element">
+                    <div class="benefit-icon">
+                        🌿
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">100% Organic</h3>
+                    <p class="text-gray-600">Pure, natural ingredients sourced from sustainable farms worldwide</p>
+                </div>
+                <div class="animate-element">
+                    <div class="benefit-icon">
+                        🤝
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Ethically Sourced</h3>
+                    <p class="text-gray-600">Supporting fair trade practices and local farming communities</p>
+                </div>
+                <div class="animate-element">
+                    <div class="benefit-icon">
+                        🔬
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">GC-MS Tested</h3>
+                    <p class="text-gray-600">Every batch tested for purity, potency, and therapeutic quality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-20 bg-gray-50 animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    Featured Products
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    Handpicked essential oils and wellness products for your daily routine
+                </p>
+            </div>
+            
+            <div class="splide" id="featured-products">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="product-card mx-2">
+                                <div class="relative">
+                                    <img src="https://kimi-web-img.moonshot.cn/img/www.schoolofnaturalskincare.com/e836ff81f1da734126b631d527663fa9d4d1f94c.webp" 
+                                         alt="Lavender Essential Oil" 
+                                         class="w-full h-48 object-cover">
+                                    <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">
+                                        <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Lavender Essential Oil</h3>
+                                    <p class="text-gray-600 text-sm mb-3">Pure lavender oil for relaxation and sleep</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold text-gray-900">£18.99</span>
+                                        <button class="add-to-cart btn-primary px-4 py-2 rounded-full text-sm font-medium" data-product-id="lavender-oil">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="product-card mx-2">
+                                <div class="relative">
+                                    <img src="https://kimi-web-img.moonshot.cn/img/eatlove.live/3588287479a7a1f04086c66cbdb407d5ad1b6a27.jpg" 
+                                         alt="Peppermint Essential Oil" 
+                                         class="w-full h-48 object-cover">
+                                    <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">
+                                        <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Peppermint Essential Oil</h3>
+                                    <p class="text-gray-600 text-sm mb-3">Refreshing oil for energy and focus</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold text-gray-900">£16.99</span>
+                                        <button class="add-to-cart btn-primary px-4 py-2 rounded-full text-sm font-medium" data-product-id="peppermint-oil">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="product-card mx-2">
+                                <div class="relative">
+                                    <img src="https://kimi-web-img.moonshot.cn/img/iaohp.com/3cf5a81b9612b8a092e4235ae0fedc802f635ca2.jpg" 
+                                         alt="Eucalyptus Essential Oil" 
+                                         class="w-full h-48 object-cover">
+                                    <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">
+                                        <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Eucalyptus Essential Oil</h3>
+                                    <p class="text-gray-600 text-sm mb-3">Clearing oil for respiratory health</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold text-gray-900">£17.99</span>
+                                        <button class="add-to-cart btn-primary px-4 py-2 rounded-full text-sm font-medium" data-product-id="eucalyptus-oil">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="product-card mx-2">
+                                <div class="relative">
+                                    <img src="https://kimi-web-img.moonshot.cn/img/cantocandle.com/1d26f993965b16240fda3bc5d0752264ad42203d.jpg" 
+                                         alt="Sleep Well Blend" 
+                                         class="w-full h-48 object-cover">
+                                    <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">
+                                        <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-semibold text-lg text-gray-900 mb-2">Sleep Well Blend</h3>
+                                    <p class="text-gray-600 text-sm mb-3">Calming blend for restful sleep</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold text-gray-900">£22.99</span>
+                                        <button class="add-to-cart btn-primary px-4 py-2 rounded-full text-sm font-medium" data-product-id="sleep-blend">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 bg-white animate-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-element">
+                    How It Works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto animate-element">
+                    Simple steps to incorporate essential oils into your wellness routine
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center animate-element">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-green-600">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Choose Your Oils</h3>
+                    <p class="text-gray-600">Browse our collection of pure essential oils and select the ones that match your wellness goals</p>
+                </div>
+                
+                <div class="text-center animate-element">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-green-600">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Learn & Apply</h3>
+                    <p class="text-gray-600">Follow our detailed guides on how to safely use essential oils for maximum benefit</p>
+                </div>
+                
+                <div class="text-center animate-element">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-green-600">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Enjoy Wellness</h3>
+                    <p class="text-gray-600">Experience the natural benefits of aromatherapy in your daily life</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-gray-900 text-white animate-on-scroll">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 animate-element">
+                Join Our Wellness Community
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 animate-element">
+                Get 10% off your first order and receive wellness tips, exclusive offers, and more
+            </p>
+            
+            <form class="newsletter-form max-w-md mx-auto animate-element">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" 
+                           placeholder="Enter your email address" 
+                           required
+                           class="flex-1 px-6 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button type="submit" class="btn-primary px-8 py-3 rounded-full font-semibold whitespace-nowrap">
+                        Get 10% Off
+                    </button>
+                </div>
+                <p class="text-sm text-gray-400 mt-4">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
+                <div class="success-message hidden mt-4 p-4 bg-green-600 rounded-lg">
+                    <p class="text-white">Thank you! Check your email for your discount code.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="resources/logo-asaal.png" alt="Asaal" class="h-8 w-auto">
+                        <span class="font-display text-2xl font-bold text-gray-900">Asaal</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Pure essential oils and wellness products for natural living.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop.html" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Shop All</a></li>
+                        <li><a href="about.html" class="text-gray-600 hover:text-green-600 text-sm transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Care -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Customer Care</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Returns</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600 text-sm transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Connect -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Connect</h3>
+                    <p class="text-gray-600 text-sm mb-4">Follow us for wellness tips and updates</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center">
+                <p class="text-gray-600 text-sm">
+                    © 2024 Asaal. All rights reserved. | Company Registration: 12345678 | VAT: GB123456789
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 hidden">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-900">Shopping Cart</h3>
+                <button class="cart-toggle text-gray-500 hover:text-gray-700">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="cart-items flex-1 overflow-y-auto p-6">
+            <!-- Cart items will be populated by JavaScript -->
+        </div>
+        
+        <div class="border-t border-gray-200 p-6">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-lg font-semibold">Total:</span>
+                <span class="cart-total text-xl font-bold text-green-600">£0.00</span>
+            </div>
+            <a href="#" class="btn-primary w-full py-3 rounded-full font-semibold text-center block">
+                Checkout
+            </a>
+        </div>
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div class="newsletter-modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+        <div class="modal-content bg-white rounded-2xl p-8 mx-4">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Welcome to Asaal!</h3>
+                <p class="text-gray-600 mb-6">Subscribe to our newsletter and get 10% off your first order</p>
+                
+                <form class="newsletter-form">
+                    <input type="email" 
+                           placeholder="Enter your email address" 
+                           required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button type="submit" class="btn-primary w-full py-3 rounded-lg font-semibold">
+                        Get My 10% Discount
+                    </button>
+                </form>
+                
+                <button class="close-modal mt-4 text-gray-500 hover:text-gray-700 text-sm">
+                    No thanks, continue shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-40 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between">
+            <p class="text-sm mb-4 sm:mb-0">
+                We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+                <a href="#" class="underline hover:text-green-400">Learn more</a>
+            </p>
+            <div class="flex space-x-4">
+                <button class="decline-cookies px-4 py-2 text-sm border border-gray-600 rounded-lg hover:bg-gray-800 transition-colors">
+                    Decline
+                </button>
+                <button class="accept-cookies px-4 py-2 text-sm bg-green-600 rounded-lg hover:bg-green-700 transition-colors">
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+    
+    <!-- Initialize Splide Carousel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Splide !== 'undefined') {
+                new Splide('#featured-products', {
+                    type: 'loop',
+                    perPage: 3,
+                    perMove: 1,
+                    gap: '1rem',
+                    autoplay: true,
+                    interval: 4000,
+                    pauseOnHover: true,
+                    breakpoints: {
+                        768: {
+                            perPage: 2,
+                        },
+                        640: {
+                            perPage: 1,
+                        }
+                    }
+                }).mount();
+            }
+        });
+    </script>
+</body>
+</html>
